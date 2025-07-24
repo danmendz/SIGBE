@@ -18,6 +18,10 @@ class User extends Authenticatable implements FilamentUser, HasName
     use HasFactory, Notifiable;
     use HasRoles;
 
+    /**
+     * Functions to management Filament panel access
+     *
+     */
     public function canAccessPanel(Panel $panel): bool
     {
         return str_ends_with($this->email, 'admin@gmail.com');
