@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'matricula' => ['required', 'digits:10', 'unique:users,matricula'],
+            'matricula' => ['required', 'string', 'max:10', 'unique:users,matricula'],
             'email' => [
                 'required',
                 'string',
