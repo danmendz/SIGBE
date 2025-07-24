@@ -2,11 +2,11 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- Matricula -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="matricula" :value="__('Matricula')" />
+            <x-text-input id="matricula" class="block mt-1 w-full" type="number" name="matricula" :value="old('matricula')" required autofocus autocomplete="matricula" />
+            <x-input-error :messages="$errors->get('matricula')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
