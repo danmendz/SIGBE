@@ -23,6 +23,7 @@ class ProfileUpdateRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
+                'regex:/^[\w\.-]+@uth\.edu\.mx$/',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
         ];

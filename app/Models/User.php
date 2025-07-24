@@ -24,7 +24,7 @@ class User extends Authenticatable implements FilamentUser, HasName
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, 'admin@gmail.com');
+        return $this->hasRole('administrador');
     }
 
     public function getFilamentName(): string
