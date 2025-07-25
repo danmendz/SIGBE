@@ -19,6 +19,8 @@ class PermissionsSeeder extends Seeder
             'crear usuarios',
             'editar usuarios',
             'eliminar usuarios',
+            'restaurar usuarios',
+            'forzar eliminación de usuarios',
             'ver roles',
             'crear roles',
             'editar roles',
