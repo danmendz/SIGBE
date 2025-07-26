@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class BecaActiva extends Model
+{
+    protected $table = 'becas_activas';
+
+    protected $fillable = [
+        'matricula',
+        'periodo_beca',
+        'tipo_beca_id',
+        'fecha_solicitud',
+        'fecha_autorizacion',
+        'fecha_terminacion',
+        'motivo_baja',
+        'fecha_baja',
+        'activa',
+    ];
+
+    public function tipoBeca(): BelongsTo
+    {
+        return $this->belongsTo(TipoBeca::class, 'tipo_beca_id');
+    }
+
+    public function periodo(): BelongsTo
+    {
+        return $this->belongsTo(Periodo::class, 'periodo_beca');
+    }
+
+    public function usuario(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'matricula', 'matricula');
+    }
+}
