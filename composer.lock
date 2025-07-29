@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a65be244cebccdcb588e0e04334aaab6",
+    "content-hash": "c7df864969f3cbfe71df9f027bde218f",
     "packages": [
         {
             "name": "althinect/filament-spatie-roles-permissions",
@@ -7995,6 +7995,65 @@
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.1"
             },
             "time": "2025-03-19T14:43:43+00:00"
+        },
+        {
+            "name": "kamona/kui-laravel-breeze",
+            "version": "v0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kamona-WD/kui-laravel-breeze.git",
+                "reference": "1dd9b3ff220cc863eb45b87a9feec5510888077f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kamona-WD/kui-laravel-breeze/zipball/1dd9b3ff220cc863eb45b87a9feec5510888077f",
+                "reference": "1dd9b3ff220cc863eb45b87a9feec5510888077f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KUI\\Breeze\\KUIBreezeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KUI\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kamona-WD",
+                    "email": "ak3849909@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Different UI for laravel/breeze",
+            "homepage": "https://github.com/Kamona-WD/kui-laravel-breeze",
+            "keywords": [
+                "alpinejs",
+                "breeze",
+                "dashboard",
+                "laravel",
+                "react",
+                "tailwindcss",
+                "ui",
+                "vuejs"
+            ],
+            "support": {
+                "issues": "https://github.com/Kamona-WD/kui-laravel-breeze/issues",
+                "source": "https://github.com/Kamona-WD/kui-laravel-breeze/tree/v0.5.1"
+            },
+            "time": "2023-05-23T22:40:18+00:00"
         },
         {
             "name": "laravel/breeze",
