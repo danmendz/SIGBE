@@ -9,7 +9,7 @@ class ComprobanteIngreso extends Model
 {
     use HasFactory;
 
-    protected $table = 'comprobantes_ingresos';
+    protected $table = 'comprobante_ingresos';
 
     protected $fillable = [
         'postulacion_id',

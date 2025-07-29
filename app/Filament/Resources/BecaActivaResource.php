@@ -63,11 +63,11 @@ class BecaActivaResource extends Resource
             ->columns([
                 TextColumn::make('usuario.matricula')->label('Estudiante'),
                 TextColumn::make('tipoBeca.nombre')->label('Tipo de Beca'),
-                TextColumn::make('periodo_beca'),
+                TextColumn::make('periodo.nombre_periodo'),
                 TextColumn::make('fecha_solicitud')->date(),
                 TextColumn::make('fecha_autorizacion')->date(),
                 TextColumn::make('fecha_terminacion')->date(),
-                IconColumn::make('activo')->boolean(),
+                IconColumn::make('activa')->boolean(),
             ])
             ->filters([
                 //

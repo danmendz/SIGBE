@@ -46,13 +46,21 @@ class CodigoRequisitoResource extends Resource
             ->columns([
                 TextColumn::make('codigo'),
                 TextColumn::make('descripcion'),
-                TextColumn::make('tipo_validacion'),
+
+                TextColumn::make('tipo_validacion')
+                    ->badge()
+                    ->colors([
+                        'info' => 'automatica',
+                        'warning' => 'manual',
+                        'warning' => 'mixta',
+                    ]),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

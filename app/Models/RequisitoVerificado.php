@@ -9,7 +9,7 @@ class RequisitoVerificado extends Model
 {
     use HasFactory;
 
-    protected $table = 'requisitos_verificados';
+    protected $table = 'requisito_verificados';
 
     protected $fillable = [
         'postulacion_id',

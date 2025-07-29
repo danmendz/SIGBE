@@ -30,11 +30,25 @@ class PostulacionBecaResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('beca_publicada_id')->relationship('publicacionBeca', 'id'),
+                Select::make('beca_publicada_id')
+                    ->label('Beca Publicada')
+                    ->required()
+                    ->options(
+                        \App\Models\PublicacionBeca::with('tipoBeca', 'periodo')->get()
+                            ->mapWithKeys(function ($publicacion) {
+                                return [
+                                    $publicacion->id => $publicacion->tipoBeca->nombre . ' - ' . $publicacion->periodo->nombre_periodo,
+                                ];
+                            })
+                    )
+                    ->searchable()
+                    ->preload(),
+
                 Forms\Components\Select::make('estudiante_id')
                     ->label('Estudiante')
                     ->relationship('usuario', 'matricula')
                     ->required(),   
+
                 DatePicker::make('fecha_postulacion')->required(),
                 Select::make('estatus')
                     ->options([
@@ -50,16 +64,31 @@ class PostulacionBecaResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('publicacionBeca.tipoBeca.nombre')
+                    ->label('Tipo de Beca'),
+
+                TextColumn::make('publicacionBeca.periodo.nombre_periodo')
+                    ->label('Periodo'),
+
                 TextColumn::make('usuario.matricula')->label('Estudiante'),
                 TextColumn::make('publicacionBeca.periodo.nombre_periodo'),
                 TextColumn::make('fecha_postulacion')->date(),
-                TextColumn::make('estatus'),
+
+                TextColumn::make('estatus')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pendiente' => 'warning',
+                        'aprobada' => 'success',
+                        'rechazada' => 'danger',
+                        default => 'gray',
+                    })
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
