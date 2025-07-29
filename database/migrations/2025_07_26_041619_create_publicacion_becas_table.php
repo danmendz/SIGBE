@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('publicacion_becas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('requisitos_beca_id');
+            $table->unsignedBigInteger('tipo_beca_id');
             $table->unsignedBigInteger('periodo_id');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->text('requisitos')->nullable();
 
-            $table->foreign('requisitos_beca_id')->references('id')->on('requisito_becas')->onDelete('cascade');
+            $table->foreign('tipo_beca_id')->references('id')->on('tipo_becas')->onDelete('cascade');
             $table->foreign('periodo_id')->references('id')->on('periodos')->onDelete('cascade');
             $table->timestamps();
         });

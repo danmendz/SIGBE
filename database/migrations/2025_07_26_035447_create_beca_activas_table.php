@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('beca_activas', function (Blueprint $table) {
             $table->id();
-            $table->string('matricula', 20);
-            $table->foreign('matricula')->references('matricula')->on('users')->onDelete('cascade');
-
+            $table->foreignId('estudiante_id')->constrained('users')->onDelete('cascade');;
             $table->foreignId('periodo_beca')->constrained('periodos')->onDelete('cascade');
             $table->foreignId('tipo_beca_id')->constrained('tipo_becas')->onDelete('cascade');
 

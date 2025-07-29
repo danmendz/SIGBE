@@ -9,11 +9,11 @@ class PostulacionBeca extends Model
 {
     use HasFactory;
 
-    protected $table = 'postulaciones_beca';
+    protected $table = 'postulacion_becas';
 
     protected $fillable = [
         'beca_publicada_id',
-        'matricula',
+        'estudiante_id',
         'fecha_postulacion',
         'estatus',
         'motivo_rechazo',
@@ -28,4 +28,20 @@ class PostulacionBeca extends Model
     {
         return $this->belongsTo(User::class, 'estudiante_id');
     }
+
+    public function bitacoras()
+    {
+        return $this->hasMany(BitacoraPostulacion::class, 'postulacion_id');
+    }
+
+    public function requisitosVerificados()
+    {
+        return $this->hasMany(RequisitoVerificado::class, 'postulacion_id');
+    }
+
+    public function comprobantesIngresos()
+    {
+        return $this->hasMany(ComprobanteIngreso::class, 'postulacion_id');
+    }
+
 }

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RequisitoBeca extends Model
 {
-    protected $table = 'requisitos_beca';
+    use HasFactory;
+
+    protected $table = 'requisito_becas';
 
     protected $fillable = [
         'tipo_beca_id',

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('codigo_requisitos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 50);
+            $table->string('codigo', 50);
             $table->text('descripcion');
             $table->enum('tipo_validacion', ['automatica', 'manual', 'mixta'])->default('automatica');
             $table->timestamps();

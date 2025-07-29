@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BecaActiva extends Model
 {
-    protected $table = 'becas_activas';
+    use HasFactory;
+
+    protected $table = 'beca_activas';
 
     protected $fillable = [
-        'matricula',
+        'estudiante_id',
         'periodo_beca',
         'tipo_beca_id',
         'fecha_solicitud',
@@ -33,6 +36,6 @@ class BecaActiva extends Model
 
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'matricula', 'matricula');
+        return $this->belongsTo(User::class, 'estudiante_id');
     }
 }
