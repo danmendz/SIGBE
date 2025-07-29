@@ -15,28 +15,22 @@
     </x-sidebar.link>
 
     <x-sidebar.dropdown
-        title="Buttons"
+        title="Información"
         :active="Str::startsWith(request()->route()->uri(), 'buttons')"
     >
         <x-slot name="icon">
             <x-heroicon-o-bars-3-center-left class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
 
-        <x-sidebar.sublink
-            title="Text button"
-            href="{{ route('buttons.text') }}"
-            :active="request()->routeIs('buttons.text')"
-        />
-        <x-sidebar.sublink
-            title="Icon button"
-            href="{{ route('buttons.icon') }}"
-            :active="request()->routeIs('buttons.icon')"
-        />
-        <x-sidebar.sublink
-            title="Text with icon"
-            href="{{ route('buttons.text-icon') }}"
-            :active="request()->routeIs('buttons.text-icon')"
-        />
+        <!-- Sidebar sublinks for different role types -->
+        @role('revisor')
+            @include('components.sidebar.sublinks.revisor')
+        @endrole
+
+        @role('estudiante')
+            @include('components.sidebar.sublinks.estudiante')
+        @endrole
+
     </x-sidebar.dropdown>
 
     <div
@@ -44,11 +38,16 @@
         x-show="isSidebarOpen || isSidebarHovered"
         class="text-sm text-gray-500"
     >
-        Links
+        Opciones 
     </div>
 
-    <x-sidebar.link title="Link 1" href="" />
-    <x-sidebar.link title="Link 2" href="" />
-    <x-sidebar.link title="Link 3" href="" />
+    <!-- Links for different role types -->
+    @role('revisor')
+        @include('components.sidebar.links.revisor')
+    @endrole
+
+    @role('estudiante')
+        @include('components.sidebar.links.estudiante')
+    @endrole
 
 </x-perfect-scrollbar>
