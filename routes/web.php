@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\BecaActivaController;
+use App\Http\Controllers\PostulacionBecaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicacionBecaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +44,9 @@ Route::get('/buttons/icon', function () {
 Route::get('/buttons/text-icon', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
+
+Route::resource('publicacion-becas', PublicacionBecaController::class);
+Route::resource('postulacion-becas', PostulacionBecaController::class);
+Route::resource('beca-activas', BecaActivaController::class);
 
 require __DIR__ . '/auth.php';

@@ -23,22 +23,22 @@
 
         <div class="space-y-2">
             <x-form.label
-                for="name"
-                :value="__('Name')"
+            for="matricula"
+            :value="__('Matricula')"
             />
 
             <x-form.input
-                id="name"
-                name="name"
-                type="text"
-                class="block w-full"
-                :value="old('name', $user->name)"
-                required
-                autofocus
-                autocomplete="name"
+            id="matricula"
+            name="matricula"
+            type="text"
+            class="block w-full"
+            :value="old('matricula', $user->matricula)"
+            required
+            autofocus
+            autocomplete="matricula"
             />
 
-            <x-form.error :messages="$errors->get('name')" />
+            <x-form.error :messages="$errors->get('matricula')" />
         </div>
 
         <div class="space-y-2">
