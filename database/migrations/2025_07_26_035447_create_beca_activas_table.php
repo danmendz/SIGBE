@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('beca_activas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('estudiante_id')->constrained('users')->onDelete('cascade');;
-            $table->foreignId('periodo_beca')->constrained('periodos')->onDelete('cascade');
+            $table->foreignId('periodo_beca_id')->constrained('periodos')->onDelete('cascade');
             $table->foreignId('tipo_beca_id')->constrained('tipo_becas')->onDelete('cascade');
 
             $table->date('fecha_solicitud')->nullable();
             $table->date('fecha_autorizacion')->nullable();
-            $table->date('fecha_terminacion')->nullable();
+            $table->string('fecha_terminacion', 15)->nullable();
 
             $table->text('motivo_baja')->nullable();
             $table->date('fecha_baja')->nullable();

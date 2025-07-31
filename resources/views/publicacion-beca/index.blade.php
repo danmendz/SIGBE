@@ -5,6 +5,18 @@
         </h2>
     </x-slot>
 
+    @if (session('success'))
+        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
@@ -48,15 +60,24 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $publicacionBeca->fecha_fin }}</td>
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                <form action="{{ route('publicacion-becas.destroy', $publicacionBeca->id) }}" method="POST">
-                                                    <a href="{{ route('publicacion-becas.show', $publicacionBeca->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
-                                                    <!--
-                                                    <a href="{{ route('publicacion-becas.edit', $publicacionBeca->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
+                                                <form action="{{ route('postularse.beca', $publicacionBeca->id) }}" method="POST">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('publicacion-becas.destroy', $publicacionBeca->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
-                                                    -->
-                                                </form>
+                                                    <a href="{{ route('publicacion-becas.show', $publicacionBeca->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
+
+                                                    @if (auth()->user()->hasRole('revisor'))
+                                                        <a href="{{ route('publicacion-becas.edit', $publicacionBeca->id) }}" class="text-blue-600 font-bold hover:text-blue-900 mr-2">{{ __('Edit') }}</a>
+                                                        <form action="{{ route('publicacion-becas.destroy', $publicacionBeca->id) }}" method="POST" class="inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="text-red-600 font-bold hover:text-red-900">{{ __('Delete') }}</button>
+                                                        </form>
+                                                    @else
+                                                        <button type="submit" class="text-blue-600 font-bold hover:text-blue-900">
+                                                            Postularse a beca
+                                                        </button>
+                                                    @endif
+                                                
+                                                </form>                                                
                                             </td>
                                         </tr>
                                     @endforeach

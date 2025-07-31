@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $publicacionBeca->name ?? __('Show') . " " . __('Publicacion Beca') }}
+            {{ $bitacoraPostulacione->name ?? __('Show') . " " . __('Bitacora Postulacione') }}
         </h2>
     </x-slot>
 
@@ -11,11 +11,11 @@
                 <div class="w-full">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Show') }} Publicacion Beca</h1>
-                            <p class="mt-2 text-sm text-gray-700">Details of {{ __('Publicacion Beca') }}.</p>
+                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Show') }} Bitacora Postulacione</h1>
+                            <p class="mt-2 text-sm text-gray-700">Details of {{ __('Bitacora Postulacione') }}.</p>
                         </div>
                         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" href="{{ route('publicacion-becas.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
+                            <a type="button" href="{{ route('bitacora-postulaciones.index') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Back</a>
                         </div>
                     </div>
 
@@ -26,20 +26,20 @@
                                     <dl class="divide-y divide-gray-100">
                                         
                                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Tipo Beca Id</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $publicacionBeca->tipoBeca->nombre }}</dd>
+                                    <dt class="text-sm font-medium leading-6 text-gray-900">Postulacion Id</dt>
+                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $bitacoraPostulacione->postulacion_id }}</dd>
                                 </div>
                                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Periodo Id</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $publicacionBeca->periodo->nombre_periodo }}</dd>
+                                    <dt class="text-sm font-medium leading-6 text-gray-900">Usuario Reviso</dt>
+                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $bitacoraPostulacione->usuario_reviso }}</dd>
                                 </div>
                                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Fecha Inicio</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $publicacionBeca->fecha_inicio }}</dd>
+                                    <dt class="text-sm font-medium leading-6 text-gray-900">Actualizado El</dt>
+                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $bitacoraPostulacione->actualizado_el }}</dd>
                                 </div>
                                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                    <dt class="text-sm font-medium leading-6 text-gray-900">Fecha Fin</dt>
-                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $publicacionBeca->fecha_fin }}</dd>
+                                    <dt class="text-sm font-medium leading-6 text-gray-900">Accion</dt>
+                                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ $bitacoraPostulacione->accion }}</dd>
                                 </div>
 
                                     </dl>

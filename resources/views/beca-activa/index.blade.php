@@ -42,9 +42,9 @@
                                         <tr class="even:bg-gray-50">
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
                                             
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->estudiante_id }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->periodo_beca }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->tipo_beca_id }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->usuario->matricula }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->periodo->nombre_periodo }}</td>
+										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->tipoBeca->nombre }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->fecha_solicitud }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->fecha_autorizacion }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $becaActiva->fecha_terminacion }}</td>

@@ -14,7 +14,7 @@ class BecaActiva extends Model
 
     protected $fillable = [
         'estudiante_id',
-        'periodo_beca',
+        'periodo_beca_id',
         'tipo_beca_id',
         'fecha_solicitud',
         'fecha_autorizacion',
@@ -31,7 +31,7 @@ class BecaActiva extends Model
 
     public function periodo(): BelongsTo
     {
-        return $this->belongsTo(Periodo::class, 'periodo_beca');
+        return $this->belongsTo(Periodo::class, 'periodo_beca_id');
     }
 
     public function usuario(): BelongsTo

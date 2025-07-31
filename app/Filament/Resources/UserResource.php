@@ -50,8 +50,8 @@ class UserResource extends Resource
                     ->label('Contraseña')
                     ->maxLength(255)
                     ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null)
-                    ->required(fn (string $context): bool => $context === 'create')
-                    ->hiddenOn('edit'),
+                    ->required(fn (string $context): bool => $context === 'create' || $context === 'edit')
+                    ->hiddenOn('view'),
 
                 Toggle::make('activo')
                     ->label('Activo')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BecaActivaController;
+use App\Http\Controllers\BitacoraPostulacionesController;
 use App\Http\Controllers\PostulacionBecaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -45,8 +46,19 @@ Route::get('/buttons/text-icon', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
 
-Route::resource('publicacion-becas', PublicacionBecaController::class);
+// Rutas para aprobar y rechazar postulaciones de becas
+Route::post('/postulacion-becas/{id}/rechazar', [PostulacionBecaController::class, 'rechazarBeca'])->name('postulacion-becas.rechazar');
+Route::post('/postulacion-becas/{id}/aprobar', [PostulacionBecaController::class, 'aprobarBeca'])->name('postulacion-becas.aprobar');
+
+// Rutas de recursos
 Route::resource('postulacion-becas', PostulacionBecaController::class);
 Route::resource('beca-activas', BecaActivaController::class);
+Route::resource('publicacion-becas', PublicacionBecaController::class);
+Route::resource('bitacora-postulaciones', BitacoraPostulacionesController::class);
+
+// Rutas para postularse a una beca
+Route::post('/postularse/{id}', [\App\Http\Controllers\PostulacionBecaController::class, 'postularse'])
+    ->name('postularse.beca')
+    ->middleware('auth');
 
 require __DIR__ . '/auth.php';
