@@ -67,6 +67,17 @@
                                                 <a href="{{ route('postulacion-becas.show', $postulacionBeca->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
 
                                                 @if (auth()->user()->hasRole('revisor'))
+
+                                                    <!-- Inspeccionar información -->
+                                                    <form action="{{ route('consultar.informacion.estudiante') }}" method="POST" class="inline-block">
+                                                        @csrf
+                                                        <input type="hidden" name="matricula" value="{{ $postulacionBeca->usuario->matricula }}">
+                                                        <input type="hidden" name="publicacion_beca" value="{{ $postulacionBeca->beca_publicada_id }}">
+                                                        <button type="submit" class="text-blue-600 font-bold hover:text-blue-900">
+                                                            Inspeccionar
+                                                        </button>
+                                                    </form>
+
                                                     <!-- Editar -->
                                                     <a href="{{ route('postulacion-becas.edit', $postulacionBeca->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900 mr-2">{{ __('Edit') }}</a>
 

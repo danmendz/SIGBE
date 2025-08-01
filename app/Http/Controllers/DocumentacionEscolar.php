@@ -42,6 +42,25 @@ class DocumentacionEscolar extends Controller
         return view('estudiantes.resultado', compact('datosGenerales', 'documentacion', 'adeudos', 'info', 'calificaciones', 'promedios'));
     }
 
+    public function consultarInfoEstudiante(Request $request, ApiDocumentacionEscolarService $api)
+    {
+        $matricula = $request->input('matricula');
+        $publicacion_beca = $request->input('publicacion_beca');
+
+        $datosGenerales = $api->obtenerDatosGenerales($matricula);
+        $documentacion = $api->obtenerDocumentacion($matricula);
+        $adeudos = $api->obtenerAdeudos($matricula);
+        $info = $api->obtenerInformacionEstudiante($matricula);
+        $calificaciones = $api->obtenerCalificaciones($matricula);
+        $promedios = $api->obtenerPromedios($matricula);
+
+        if (!$adeudos && !$documentacion && !$datosGenerales && !$info && !$calificaciones && !$promedios) {
+            return back()->withErrors('No se pudo obtener información. El servidor puede estar inactivo.');
+        }
+
+        return view('postulacion-beca.show', compact('datosGenerales', 'documentacion', 'adeudos', 'info', 'calificaciones', 'promedios', 'publicacion_beca'));
+    }
+
     /**
      * Handle the student documentation consultation with period.
      *

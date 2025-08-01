@@ -66,5 +66,7 @@ Route::get('/consulta', [DocumentacionEscolar::class, 'formulario'])->name('cons
 Route::post('/consulta/matricula', [DocumentacionEscolar::class, 'consultarPorMatricula'])->name('consulta.matricula');
 Route::post('/consulta/completa', [DocumentacionEscolar::class, 'consultarPorMatriculaYPeriodo'])->name('consulta.completa');
 
+Route::post('/consultar/matricula/publicacion', [DocumentacionEscolar::class, 'consultarInfoEstudiante'])->name('consultar.informacion.estudiante');
+Route::post('/consultar/beca', [PublicacionBecaController::class, 'consultarInfoBeca'])->name('consultar.informacion.beca');
 
 require __DIR__ . '/auth.php';

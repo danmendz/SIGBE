@@ -11,6 +11,27 @@ use Illuminate\View\View;
 
 class PublicacionBecaController extends Controller
 {
+    public function consultarInfoBeca(Request $request)
+    {
+        $idPublicacion = $request->input('publicacion_beca');
+
+        $publicacionBeca = PublicacionBeca::find($idPublicacion);
+
+        if (!$publicacionBeca) {
+            return back()->withErrors('La publicación de beca no existe.');
+        }
+
+        $tipoBeca = $publicacionBeca->tipoBeca;
+        $periodo = $publicacionBeca->periodo;
+        $requisitos = $tipoBeca->requisitos;
+
+        return view('publicacion-beca.show-requisitos', compact(
+            'publicacionBeca',
+            'tipoBeca',
+            'periodo',
+            'requisitos'
+        ));
+    }
     /**
      * Display a listing of the resource.
      */
