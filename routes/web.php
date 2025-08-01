@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BecaActivaController;
 use App\Http\Controllers\BitacoraPostulacionesController;
+use App\Http\Controllers\DocumentacionEscolar;
 use App\Http\Controllers\PostulacionBecaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -60,5 +61,10 @@ Route::resource('bitacora-postulaciones', BitacoraPostulacionesController::class
 Route::post('/postularse/{id}', [\App\Http\Controllers\PostulacionBecaController::class, 'postularse'])
     ->name('postularse.beca')
     ->middleware('auth');
+
+Route::get('/consulta', [DocumentacionEscolar::class, 'formulario'])->name('consulta.formulario');
+Route::post('/consulta/matricula', [DocumentacionEscolar::class, 'consultarPorMatricula'])->name('consulta.matricula');
+Route::post('/consulta/completa', [DocumentacionEscolar::class, 'consultarPorMatriculaYPeriodo'])->name('consulta.completa');
+
 
 require __DIR__ . '/auth.php';
