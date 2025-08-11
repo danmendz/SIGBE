@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class PublicacionBecaController extends Controller
 {
-    public function consultarInfoBeca(Request $request)
+    public function consultarRequisitosDeBeca(Request $request)
     {
         $idPublicacion = $request->input('publicacion_beca');
 

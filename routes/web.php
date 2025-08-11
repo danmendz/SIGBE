@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\BecaActivaController;
 use App\Http\Controllers\BitacoraPostulacionesController;
-use App\Http\Controllers\DocumentacionEscolar;
+use App\Http\Controllers\DocumentacionEscolarController;
 use App\Http\Controllers\PostulacionBecaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionBecaController;
+use App\Http\Controllers\RequisitoVerificadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,17 +57,19 @@ Route::resource('postulacion-becas', PostulacionBecaController::class);
 Route::resource('beca-activas', BecaActivaController::class);
 Route::resource('publicacion-becas', PublicacionBecaController::class);
 Route::resource('bitacora-postulaciones', BitacoraPostulacionesController::class);
+Route::resource('requisito-verificados', RequisitoVerificadoController::class); 
 
 // Rutas para postularse a una beca
 Route::post('/postularse/{id}', [\App\Http\Controllers\PostulacionBecaController::class, 'postularse'])
     ->name('postularse.beca')
     ->middleware('auth');
 
+// Rutas para consultar información de estudiantes (consulta por matrícula y periodo a API externas)
 Route::get('/consulta', [DocumentacionEscolar::class, 'formulario'])->name('consulta.formulario');
 Route::post('/consulta/matricula', [DocumentacionEscolar::class, 'consultarPorMatricula'])->name('consulta.matricula');
 Route::post('/consulta/completa', [DocumentacionEscolar::class, 'consultarPorMatriculaYPeriodo'])->name('consulta.completa');
 
-Route::post('/consultar/matricula/publicacion', [DocumentacionEscolar::class, 'consultarInfoEstudiante'])->name('consultar.informacion.estudiante');
-Route::post('/consultar/beca', [PublicacionBecaController::class, 'consultarInfoBeca'])->name('consultar.informacion.beca');
+// Rutas para consultar la información de los estudiantes y requisitos de beca
+Route::post('/consultar/matricula/publicacion', [DocumentacionEscolarController::class, 'consultarInfoEstudianteYBeca'])->name('consultar.informacion.estudiante');
 
 require __DIR__ . '/auth.php';
