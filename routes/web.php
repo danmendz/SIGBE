@@ -4,10 +4,12 @@ use App\Http\Controllers\BecaActivaController;
 use App\Http\Controllers\BitacoraPostulacionesController;
 use App\Http\Controllers\DocumentacionEscolarController;
 use App\Http\Controllers\PostulacionBecaController;
+use App\Http\Controllers\Api\PostulacionBecaController as ApiPostulacionBecaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionBecaController;
 use App\Http\Controllers\RequisitoVerificadoController;
+use App\Livewire\VerificarRequisitos;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,5 +73,10 @@ Route::post('/consulta/completa', [DocumentacionEscolar::class, 'consultarPorMat
 
 // Rutas para consultar la información de los estudiantes y requisitos de beca
 Route::post('/consultar/matricula/publicacion', [DocumentacionEscolarController::class, 'consultarInfoEstudianteYBeca'])->name('consultar.informacion.estudiante');
+
+Route::get('/requisitos', VerificarRequisitos::class)->name('ver.requisitos');
+
+// Ruta para obtener la información sobre postulaciones, alumno, tipo de beca y sus requisitos
+Route::get('/obtener/postulaciones-becas', [ApiPostulacionBecaController::class, 'index']);
 
 require __DIR__ . '/auth.php';

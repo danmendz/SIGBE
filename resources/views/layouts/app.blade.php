@@ -19,7 +19,7 @@
         }
     </style>
 
-    <!-- Scripts -->
+    @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -64,5 +64,6 @@
             </div>
         </div>
     </div>
+    @livewireScripts
 </body>
 </html>
