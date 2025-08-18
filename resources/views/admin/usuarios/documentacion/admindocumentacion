@@ -1,0 +1,74 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="bg-[#4CB944] text-white px-6 py-4 rounded-t-lg">
+            <h2 class="font-semibold text-xl">Gestión de Convocatorias</h2>
+        </div>
+    </x-slot>
+
+    <div class="py-8 bg-white min-h-screen">
+        <div class="max-w-7xl mx-auto px-4">
+
+            {{-- Título --}}
+            <div class="mb-6 text-center">
+                <h3 class="text-3xl font-bold text-gray-800">Convocatorias Académicas</h3>
+                <p class="text-gray-600">Crea, edita o elimina convocatorias para los estudiantes.</p>
+            </div>
+
+            {{-- Botón para nueva convocatoria --}}
+            <div class="flex justify-end mb-4">
+                <a href="{{ route('admin.convocatorias.create') }}"
+                   class="bg-[#1C9600] text-white px-4 py-2 rounded-lg hover:bg-[#00FF6F] transition">
+                    ➕ Nueva Convocatoria
+                </a>
+            </div>
+
+            {{-- Tabla de convocatorias --}}
+            <div class="overflow-x-auto bg-gray-50 rounded-lg shadow-lg">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#1C9600] text-white">
+                        <tr>
+                            <th class="py-3 px-4">Título</th>
+                            <th class="py-3 px-4">Descripción</th>
+                            <th class="py-3 px-4">Fecha de Inicio</th>
+                            <th class="py-3 px-4">Fecha de Fin</th>
+                            <th class="py-3 px-4 text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($convocatorias as $conv)
+                            <tr class="border-b hover:bg-[#00FF6F]/10 transition">
+                                <td class="py-3 px-4 font-semibold text-gray-800">{{ $conv->titulo }}</td>
+                                <td class="py-3 px-4 text-gray-700">{{ Str::limit($conv->descripcion, 60) }}</td>
+                                <td class="py-3 px-4">{{ \Carbon\Carbon::parse($conv->fecha_inicio)->format('d/m/Y') }}</td>
+                                <td class="py-3 px-4">{{ \Carbon\Carbon::parse($conv->fecha_fin)->format('d/m/Y') }}</td>
+                                <td class="py-3 px-4 text-center">
+                                    <a href="{{ route('admin.convocatorias.edit', $conv->id) }}"
+                                       class="bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition">
+                                        ✏️ Editar
+                                    </a>
+                                    <form action="{{ route('admin.convocatorias.destroy', $conv->id) }}"
+                                          method="POST"
+                                          class="inline ml-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-500 transition">
+                                            🗑️ Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="py-6 text-center text-gray-500">
+                                    No hay convocatorias registradas
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</x-app-layout>
