@@ -31,6 +31,7 @@
 
         <div class="bg-white shadow p-4">
             <h3 class="text-lg font-semibold mb-4">Formulario para registrar si cumple</h3>
+            @livewire('verificar-requisitos')
         </div>
         
         <div class="col-span-2 bg-white shadow p-4">
