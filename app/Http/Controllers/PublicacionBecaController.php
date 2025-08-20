@@ -11,14 +11,12 @@ use Illuminate\View\View;
 
 class PublicacionBecaController extends Controller
 {
-    public function consultarRequisitosDeBeca(Request $request)
+    public function consultarRequisitosDeBeca($id)
     {
-        $idPublicacion = $request->input('publicacion_beca');
-
-        $publicacionBeca = PublicacionBeca::find($idPublicacion);
+        $publicacionBeca = PublicacionBeca::find($id);
 
         if (!$publicacionBeca) {
-            return back()->withErrors('La publicación de beca no existe.');
+            return Redirect::back()->with('error', 'La publicación de beca no existe.');
         }
 
         $tipoBeca = $publicacionBeca->tipoBeca;

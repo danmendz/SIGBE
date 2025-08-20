@@ -60,6 +60,14 @@
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $publicacionBeca->fecha_fin }}</td>
 
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                                                
+                                                <form action="{{ route('consultar.requisitos.beca', $publicacionBeca->id) }}" method="GET" class="inline-block">
+                                                    @csrf
+                                                    <button type="submit" class="text-green-600 font-bold hover:text-green-900">
+                                                        Mostrar requisitos de beca
+                                                    </button>
+                                                </form>
+
                                                 <form action="{{ route('postularse.beca', $publicacionBeca->id) }}" method="POST">
                                                     @csrf
                                                     <a href="{{ route('publicacion-becas.show', $publicacionBeca->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
@@ -71,10 +79,6 @@
                                                             @method('DELETE')
                                                             <button type="submit" class="text-red-600 font-bold hover:text-red-900">{{ __('Delete') }}</button>
                                                         </form>
-                                                    @else
-                                                        <button type="submit" class="text-blue-600 font-bold hover:text-blue-900">
-                                                            Postularse a beca
-                                                        </button>
                                                     @endif
                                                 
                                                 </form>                                                

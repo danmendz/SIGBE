@@ -76,6 +76,9 @@ Route::post('/consultar/matricula/publicacion', [DocumentacionEscolarController:
 
 Route::get('/requisitos', VerificarRequisitos::class)->name('ver.requisitos');
 
+// Ruta para consultar los requisitos de una beca
+Route::get('/consultar/requisitos/beca/{id}', [PublicacionBecaController::class, 'consultarRequisitosDeBeca'])->name('consultar.requisitos.beca');
+
 // Ruta para obtener la información sobre postulaciones, alumno, tipo de beca y sus requisitos
 Route::get('/obtener/postulaciones-becas', [ApiPostulacionBecaController::class, 'index']);
 
