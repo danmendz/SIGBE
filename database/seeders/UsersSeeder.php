@@ -27,5 +27,12 @@ class UsersSeeder extends Seeder
             'password' => Hash::make('student123'),
         ]);
         $userStudent->assignRole('estudiante');
+
+        $userRevisor = User::create([
+            'matricula' => '3522110166',
+            'email' => '3522110166@uth.edu.mx',
+            'password' => Hash::make('revisor123'),
+        ]);
+        $userRevisor->assignRole('revisor');
     }
 }
