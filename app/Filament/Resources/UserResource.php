@@ -49,8 +49,9 @@ class UserResource extends Resource
                     ->revealable()
                     ->label('Contraseña')
                     ->maxLength(255)
-                    ->dehydrateStateUsing(fn ($state) => filled($state) ? Hash::make($state) : null)
-                    ->required(fn (string $context): bool => $context === 'create' || $context === 'edit')
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (string $context): bool => $context === 'create')
                     ->hiddenOn('view'),
 
                 Toggle::make('activo')

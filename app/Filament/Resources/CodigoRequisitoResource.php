@@ -21,13 +21,15 @@ class CodigoRequisitoResource extends Resource
 {
     protected static ?string $model = CodigoRequisito::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([ 
-                TextInput::make('codigo')->required()->unique(),
+                TextInput::make('codigo')
+                    ->required()
+                    ->unique(ignoreRecord: true),
                 Textarea::make('descripcion')->required(),
                 Select::make('tipo_validacion')
                     ->options([

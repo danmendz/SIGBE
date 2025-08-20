@@ -10,7 +10,7 @@ class ApiDocumentacionEscolarService
 
     public function __construct()
     {
-        $this->baseUrl = env('API_ESCOLAR_URL', 'http://127.0.0.1:8001/api');
+        $this->baseUrl = env('API_ESCOLAR_URL');
     }
 
     protected function get($url, $params = [])
