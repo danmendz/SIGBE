@@ -47,6 +47,8 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <x-primary-button>Submit</x-primary-button>
+        <x-button class="justify-center w-full gap-2">
+            Submit
+        </x-button>
     </div>
 </div>

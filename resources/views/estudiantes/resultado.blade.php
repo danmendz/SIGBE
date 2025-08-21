@@ -1,133 +1,194 @@
-{{-- INFORMACIÓN GENERAL --}}
-@if(isset($datosGenerales))
-    <h2 class="text-2xl font-semibold mb-4">Información General</h2>
-    <ul class="mb-6">
-        <li><strong>Nombre:</strong> {{ $datosGenerales['nombre'] }}</li>
-        <li><strong>Matrícula:</strong> {{ $datosGenerales['matricula'] }}</li>
-        <li><strong>Carrera:</strong> {{ $datosGenerales['carrera'] }}</li>
-        <li><strong>Cuatrimestre:</strong> {{ $datosGenerales['cuatrimestre'] }}</li>
-        <li><strong>Grado:</strong> {{ $datosGenerales['grado'] }}</li>
-        <li><strong>Grupo:</strong> {{ $datosGenerales['grupo'] }}</li>
-        <li><strong>Turno:</strong> {{ $datosGenerales['turno'] }}</li>
-        <li><strong>Periodo Inscrito:</strong> {{ $datosGenerales['periodo_inscrito'] }}</li>
-        <li><strong>Estatus Académico:</strong> {{ $datosGenerales['estatus_academico'] }}</li>
-    </ul>
-@endif
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-bold text-2xl text-gray-800 leading-tight tracking-wide">
+            Información de Estudiante
+        </h2>
+    </x-slot>
 
-{{-- DOCUMENTACIÓN --}}
-@if(isset($documentacion))
-    <h2 class="text-2xl font-semibold mb-4">Documentación</h2>
-    <table class="table-auto w-full mb-6 border">
-        <thead>
-            <tr>
-                <th class="border px-2">Documento</th>
-                <th class="border px-2">Original</th>
-                <th class="border px-2">Copia</th>
-                <th class="border px-2">Observaciones</th>
-                <th class="border px-2">Notas</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($documentacion as $doc)
-                <tr>
-                    <td class="border px-2">{{ $doc['documento'] }}</td>
-                    <td class="border px-2">{{ $doc['original'] }}</td>
-                    <td class="border px-2">{{ $doc['copia'] }}</td>
-                    <td class="border px-2">{{ $doc['observaciones'] }}</td>
-                    <td class="border px-2">{{ $doc['notas'] }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endif
+    {{-- INFORMACIÓN GENERAL --}}
+    @isset($datosGenerales)
+    <x-card class="mb-6 border border-green-200">
+        <x-section-header title="Información General" class="text-2xl font-bold" />
+        <ul class="grid grid-cols-2 gap-3 text-gray-700">
+            <li><strong>Nombre:</strong> {{ $datosGenerales['nombre'] }}</li>
+            <li><strong>Matrícula:</strong> {{ $datosGenerales['matricula'] }}</li>
+            <li><strong>Carrera:</strong> {{ $datosGenerales['carrera'] }}</li>
+            <li><strong>Cuatrimestre:</strong> {{ $datosGenerales['cuatrimestre'] }}</li>
+            <li><strong>Grado:</strong> {{ $datosGenerales['grado'] }}</li>
+            <li><strong>Grupo:</strong> {{ $datosGenerales['grupo'] }}</li>
+            <li><strong>Turno:</strong> {{ $datosGenerales['turno'] }}</li>
+            <li><strong>Periodo Inscrito:</strong> {{ $datosGenerales['periodo_inscrito'] }}</li>
+            <li><strong>Estatus Académico:</strong> {{ $datosGenerales['estatus_academico'] }}</li>
+        </ul>
+    </x-card>
+    @endisset
 
-{{-- ADEUDOS --}}
-@if(isset($adeudos))
-    <h2 class="text-2xl font-semibold mb-4">Adeudos</h2>
-    <table class="table-auto w-full mb-6 border">
-        <thead>
-            <tr>
-                <th class="border px-2">Área</th>
-                <th class="border px-2">Tipo de Adeudo</th>
-                <th class="border px-2">Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($adeudos as $adeudo)
-                <tr>
-                    <td class="border px-2">{{ $adeudo['area'] }}</td>
-                    <td class="border px-2">{{ $adeudo['tipo_adeudo'] }}</td>
-                    <td class="border px-2">{{ $adeudo['descripcion'] }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endif
+    {{-- DOCUMENTACIÓN --}}
+    @isset($documentacion)
+    <x-card class="mb-6 border border-green-200">
+        <x-section-header title="Documentación" />
+        <div class="overflow-x-auto">
+            <table class="min-w-[720px] table-auto w-full border border-green-200 rounded-lg text-sm" role="table" aria-label="Documentación del estudiante">
+                <thead class="bg-green-600 text-white">
+                    <tr>
+                        <th scope="col" class="px-3 py-2 text-left">Documento</th>
+                        <th scope="col" class="px-3 py-2 text-left">Original</th>
+                        <th scope="col" class="px-3 py-2 text-left">Copia</th>
+                        <th scope="col" class="px-3 py-2 text-left">Observaciones</th>
+                        <th scope="col" class="px-3 py-2 text-left">Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($documentacion as $doc)
+                    <tr class="odd:bg-gray-50 even:bg-white hover:bg-green-50">
+                        <td class="px-3 py-2 border">{{ $doc['documento'] }}</td>
 
-{{-- CALIFICACIONES --}}
-@if(isset($calificaciones))
-    <h2 class="text-2xl font-semibold mb-4">Calificaciones</h2>
-    <table class="table-auto w-full mb-6 border text-sm">
-        <thead>
-            <tr>
-                <th class="border px-2">Periodo</th>
-                <th class="border px-2">Materia</th>
-                <th class="border px-2">Profesor</th>
-                <th class="border px-2">P1</th>
-                <th class="border px-2">ARO1</th>
-                <th class="border px-2">P2</th>
-                <th class="border px-2">ARO2</th>
-                <th class="border px-2">P3</th>
-                <th class="border px-2">ARO3</th>
-                <th class="border px-2">TI</th>
-                <th class="border px-2">CF</th>
-                <th class="border px-2">ARE1</th>
-                <th class="border px-2">Calificación Final</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($calificaciones as $cal)
-                <tr>
-                    <td class="border px-2">{{ $cal['periodo_calificaciones'] }}</td>
-                    <td class="border px-2">{{ $cal['materia'] }}</td>
-                    <td class="border px-2">{{ $cal['profesor'] }}</td>
-                    <td class="border px-2">{{ $cal['p1'] }}</td>
-                    <td class="border px-2">{{ $cal['aro1_1'] }}</td>
-                    <td class="border px-2">{{ $cal['p2'] }}</td>
-                    <td class="border px-2">{{ $cal['aro2_1'] }}</td>
-                    <td class="border px-2">{{ $cal['p3'] }}</td>
-                    <td class="border px-2">{{ $cal['aro3_1'] }}</td>
-                    <td class="border px-2">{{ $cal['ti'] }}</td>
-                    <td class="border px-2">{{ $cal['cf'] }}</td>
-                    <td class="border px-2">{{ $cal['are1'] }}</td>
-                    <td class="border px-2">{{ $cal['calificacion_cuatrimestral'] }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endif
+                        <td class="px-3 py-2 border text-center">
+                            @if(!empty($doc['original']))
+                            {{-- check icon --}}
+                            <svg class="inline w-5 h-5 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="sr-only">Sí</span>
+                            @else
+                            {{-- x icon --}}
+                            <svg class="inline w-5 h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 8.586L4.293 2.879A1 1 0 002.879 4.293L8.586 10l-5.707 5.707a1 1 0 101.414 1.414L10 11.414l5.707 5.707a1 1 0 001.414-1.414L11.414 10l5.707-5.707A1 1 0 0015.707 2.879L10 8.586z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="sr-only">No</span>
+                            @endif
+                        </td>
 
-{{-- PROMEDIOS --}}
-@if(isset($promedios))
-    <h2 class="text-2xl font-semibold mb-4">Promedios</h2>
-    <table class="table-auto w-full mb-6 border text-sm">
-        <thead>
-            <tr>
-                <th class="border px-2">Matricula</th>
-                <th class="border px-2">Promedio Cuatrimestral</th>
-                <th class="border px-2">Promedio General</th>
-                <th class="border px-2">Periodo</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($promedios as $prom)
-                <tr>
-                    <td class="border px-2">{{ $prom['matricula'] }}</td>
-                    <td class="border px-2">{{ $prom['promedio_cuatrimestral'] }}</td>
-                    <td class="border px-2">{{ $prom['promedio_general'] }}</td>
-                    <td class="border px-2">{{ $prom['periodo_id'] }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endif
+                        <td class="px-3 py-2 border text-center">
+                            @if(!empty($doc['copia']))
+                            <svg class="inline w-5 h-5 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="sr-only">Sí</span>
+                            @else
+                            <svg class="inline w-5 h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 8.586L4.293 2.879A1 1 0 002.879 4.293L8.586 10l-5.707 5.707a1 1 0 101.414 1.414L10 11.414l5.707 5.707a1 1 0 001.414-1.414L11.414 10l5.707-5.707A1 1 0 0015.707 2.879L10 8.586z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="sr-only">No</span>
+                            @endif
+                        </td>
+
+                        <td class="px-3 py-2 border">{{ $doc['observaciones'] }}</td>
+                        <td class="px-3 py-2 border">{{ $doc['notas'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </x-card>
+    @endisset
+
+    {{-- ADEUDOS --}}
+    @isset($adeudos)
+    <x-card class="mb-6 border border-green-200">
+        <x-section-header title="Adeudos" />
+        <div class="overflow-x-auto">
+            <table class="min-w-[600px] table-auto w-full border border-green-200 rounded-lg text-sm" role="table" aria-label="Adeudos del estudiante">
+                <thead class="bg-green-600 text-white">
+                    <tr>
+                        <th scope="col" class="px-3 py-2 text-left">Área</th>
+                        <th scope="col" class="px-3 py-2 text-left">Tipo de Adeudo</th>
+                        <th scope="col" class="px-3 py-2 text-left">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($adeudos as $adeudo)
+                    <tr class="odd:bg-gray-50 even:bg-white hover:bg-green-50">
+                        <td class="px-3 py-2 border">{{ $adeudo['area'] }}</td>
+                        <td class="px-3 py-2 border">{{ $adeudo['tipo_adeudo'] }}</td>
+                        <td class="px-3 py-2 border">{{ $adeudo['descripcion'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </x-card>
+    @endisset
+
+    {{-- CALIFICACIONES --}}
+    @isset($calificaciones)
+    <x-card class="mb-6 border border-green-200">
+        <x-section-header title="Calificaciones" />
+        <div class="overflow-x-auto">
+            <table class="min-w-[1000px] table-auto w-full border border-green-200 rounded-lg text-sm" role="table" aria-label="Calificaciones">
+                <thead class="bg-green-600 text-white">
+                    <tr>
+                        <th scope="col" class="px-3 py-2">Periodo</th>
+                        <th scope="col" class="px-3 py-2">Materia</th>
+                        <th scope="col" class="px-3 py-2">Profesor</th>
+                        <th scope="col" class="px-3 py-2">P1</th>
+                        <th scope="col" class="px-3 py-2">ARO1</th>
+                        <th scope="col" class="px-3 py-2">P2</th>
+                        <th scope="col" class="px-3 py-2">ARO2</th>
+                        <th scope="col" class="px-3 py-2">P3</th>
+                        <th scope="col" class="px-3 py-2">ARO3</th>
+                        <th scope="col" class="px-3 py-2">TI</th>
+                        <th scope="col" class="px-3 py-2">CF</th>
+                        <th scope="col" class="px-3 py-2">ARE1</th>
+                        <th scope="col" class="px-3 py-2">Calificación Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($calificaciones as $cal)
+                    <tr class="odd:bg-gray-50 even:bg-white hover:bg-green-50">
+                        <td class="px-3 py-2 border">{{ $cal['periodo_calificaciones'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['materia'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['profesor'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['p1'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['aro1_1'] ?? '-' }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['p2'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['aro2_1'] ?? '-' }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['p3'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['aro3_1'] ?? '-' }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['ti'] }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['cf'] ?? '-' }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['are1'] ?? '-' }}</td>
+                        <td class="px-3 py-2 border">{{ $cal['calificacion_cuatrimestral'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        {{-- Si $calificaciones tiene paginación, mostrar links --}}
+        @if($calificaciones instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        <div class="mt-4">
+            {{ $calificaciones->links() }}
+        </div>
+        @endif
+
+    </x-card>
+    @endisset
+
+    {{-- PROMEDIOS --}}
+    @isset($promedios)
+    <x-card class="border border-green-200">
+        <x-section-header title="Promedios" />
+        <div class="overflow-x-auto">
+            <table class="min-w-[480px] table-auto w-full border border-green-200 rounded-lg text-sm" role="table" aria-label="Promedios">
+                <thead class="bg-green-600 text-white">
+                    <tr>
+                        <th scope="col" class="px-3 py-2">Periodo</th>
+                        <th scope="col" class="px-3 py-2">Promedio Cuatrimestral</th>
+                        <th scope="col" class="px-3 py-2">Promedio General</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($promedios as $prom)
+                    <tr class="odd:bg-gray-50 even:bg-white hover:bg-green-50">
+                        <td class="px-3 py-2 border">{{ $prom['periodo'] }}</td>
+                        <td class="px-3 py-2 border">{{ $prom['promedio_cuatrimestral'] }}</td>
+                        <td class="px-3 py-2 border">{{ $prom['promedio_general'] }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </x-card>
+    @endisset
+</x-app-layout>
