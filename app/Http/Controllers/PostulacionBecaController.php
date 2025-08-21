@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostulacionBecaRequest;
 use App\Models\BitacoraPostulacion;
 use App\Models\PublicacionBeca;
+use App\Models\DatoSocioeconomico;
 use App\Traits\ManejaPostulaciones;
 use App\Traits\VerificarRolUsuario;
 use Carbon\Carbon;
@@ -65,9 +66,15 @@ class PostulacionBecaController extends Controller
 
     public function formulario($id)
     {
+        $user = Auth::user();
+
+        // Buscar si ya tiene datos socioeconómicos
+        $datoSocioeconomico = DatoSocioeconomico::where('matricula', $user->matricula)->first();
+
+        // Pasar a la vista la publicación y datos (si existen)
         $publicacionBeca = PublicacionBeca::findOrFail($id);
 
-        return view('postulacion-beca.form-datos-socieconomicos', compact('publicacionBeca'));
+        return view('postulacion-beca.form-datos-socieconomicos', compact('publicacionBeca', 'datoSocioeconomico'));
     }
 
     /**
@@ -78,7 +85,7 @@ class PostulacionBecaController extends Controller
         $estudianteId = Auth::id();
 
         if ($this->yaEstaPostulado($id, $estudianteId)) {
-            return Redirect::back()->with('error', 'Ya estás postulado a esta beca.');
+            return redirect()->route('publicacion-becas.index')->with('error', 'Ya estás postulado a esta beca.');
         }
 
         // Validar datos socioeconómicos
