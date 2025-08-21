@@ -33,9 +33,10 @@ class DatoSocioeconomicoController extends Controller
 
     public function consultarDatosSocieconomicos($matricula)
     {
+        $yaTieneRegistro = DatoSocioeconomico::where('matricula', $matricula)->exists();
         $datoSocioeconomicos = DatoSocioeconomico::where('matricula', $matricula)->paginate();
 
-        return view('dato-socioeconomico.mis-datos-socieconomicos', compact('datoSocioeconomicos'));
+        return view('dato-socioeconomico.mis-datos-socieconomicos', compact('datoSocioeconomicos', 'yaTieneRegistro'));
     }
 
     /**

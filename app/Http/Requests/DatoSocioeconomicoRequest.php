@@ -23,7 +23,7 @@ class DatoSocioeconomicoRequest extends FormRequest
     {
         return [
 			'matricula' => 'required|string',
-			'ingreso_mensual' => 'required',
+			'ingreso_mensual' => 'required|numeric|min:0',
 			'tipo_vivienda' => 'required|string',
 			'dependiente' => 'required|string',
 			'ocupacion_dependiente' => 'required|string',

@@ -7,7 +7,16 @@
     </div>
     <div>
         <x-input-label for="ingreso_mensual" :value="__('Ingreso Mensual')"/>
-        <x-text-input id="ingreso_mensual" name="ingreso_mensual" type="text" class="mt-1 block w-full" :value="old('ingreso_mensual', $datoSocioeconomico?->ingreso_mensual)" autocomplete="ingreso_mensual" placeholder="Ingreso Mensual"/>
+        <x-text-input 
+            id="ingreso_mensual" 
+            name="ingreso_mensual" 
+            type="number" 
+            step="0.01" 
+            class="mt-1 block w-full" 
+            :value="old('ingreso_mensual', $datoSocioeconomico?->ingreso_mensual)" 
+            autocomplete="ingreso_mensual" 
+            placeholder="8500.00"
+        />
         <x-input-error class="mt-2" :messages="$errors->get('ingreso_mensual')"/>
     </div>
     <div>
@@ -37,6 +46,8 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <x-primary-button>Submit</x-primary-button>
+        <x-button class="justify-center w-full gap-2">
+            Submit
+        </x-button>
     </div>
 </div>

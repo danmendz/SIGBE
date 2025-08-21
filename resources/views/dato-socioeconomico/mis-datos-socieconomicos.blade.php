@@ -14,9 +14,15 @@
                             <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Dato Socioeconomicos') }}</h1>
                             <p class="mt-2 text-sm text-gray-700">A list of all the {{ __('Dato Socioeconomicos') }}.</p>
                         </div>
-                        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" href="{{ route('dato-socioeconomicos.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add new</a>
-                        </div>
+                        @if(!$yaTieneRegistro)
+                            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                                <a type="button" 
+                                   href="{{ route('dato-socioeconomicos.create') }}" 
+                                   class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Add new
+                                </a>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="flow-root">
@@ -25,8 +31,7 @@
                                 <table class="w-full divide-y divide-gray-300">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
-                                        
+
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Matricula</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Ingreso Mensual</th>
 									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Tipo Vivienda</th>
@@ -41,7 +46,6 @@
                                     <tbody class="divide-y divide-gray-200 bg-white">
                                     @foreach ($datoSocioeconomicos as $datoSocioeconomico)
                                         <tr class="even:bg-gray-50">
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
                                             
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->matricula }}</td>
 										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->ingreso_mensual }}</td>
