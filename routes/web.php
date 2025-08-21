@@ -68,7 +68,8 @@ Route::post('/postularse/{id}', [\App\Http\Controllers\PostulacionBecaController
 
 // Rutas para consultar información de estudiantes (consulta por matrícula y periodo a API externas)
 Route::get('/consulta', [DocumentacionEscolarController::class, 'formulario'])->name('consulta.formulario');
-Route::post('/consulta/matricula', [DocumentacionEscolarController::class, 'consultarPorMatricula'])->name('consulta.matricula');
+Route::post('/informacion-estudiante', [DocumentacionEscolarController::class, 'consultarPorMatricula'])->name('consulta.matricula');
+Route::get('/consultar-informacion-academica/matricula/{matricula}', [DocumentacionEscolarController::class, 'consultarPorMatriculaUrl'])->name('consultar.informacion.academica');
 Route::post('/consulta/completa', [DocumentacionEscolarController::class, 'consultarPorMatriculaYPeriodo'])->name('consulta.completa');
 
 // Rutas para consultar la información de los estudiantes y requisitos de beca

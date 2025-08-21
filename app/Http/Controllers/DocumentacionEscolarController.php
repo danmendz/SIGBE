@@ -36,7 +36,20 @@ class DocumentacionEscolarController extends Controller
     public function consultarPorMatricula(Request $request)
     {
         $matricula = $request->input('matricula');
+        return $this->consultar($matricula);
+    }
 
+    public function consultarPorMatriculaUrl($matricula)
+    {
+        if ($matricula !== auth()->user()->matricula) {
+            abort(403, 'No tienes permiso para acceder a esta información.');
+        }
+
+        return $this->consultar($matricula);
+    }
+
+    private function consultar($matricula)
+    {
         $datosGenerales = $this->apiDocumentacionService->obtenerDatosGenerales($matricula);
         $documentacion = $this->apiDocumentacionService->obtenerDocumentacion($matricula);
         $adeudos = $this->apiDocumentacionService->obtenerAdeudos($matricula);
@@ -45,7 +58,7 @@ class DocumentacionEscolarController extends Controller
         $promedios = $this->apiDocumentacionService->obtenerPromedios($matricula);
 
         if (!$adeudos && !$documentacion && !$datosGenerales) {
-            return back()->with('error', 'No se pudo obtener información. El servidor puede estar inactivo.');
+            return back()->with('error', 'No se pudo obtener información. Servidor inactivo o estudiante no encontrado.');
         }
 
         return view('estudiantes.resultado', compact('datosGenerales', 'documentacion', 'adeudos', 'info', 'calificaciones', 'promedios'));

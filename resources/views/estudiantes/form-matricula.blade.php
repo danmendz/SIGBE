@@ -1,3 +1,15 @@
+    @if (session('success'))
+        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+    
     {{-- Formulario por Matrícula --}}
     <div class="bg-gradient-to-r from-green-10 to-green-50 shadow-lg rounded-xl p-6 mb-8 border border-green-200 hover:scale-104 transform transition-all duration-200">
         <div class="flex items-center mb-4 space-x-3">
