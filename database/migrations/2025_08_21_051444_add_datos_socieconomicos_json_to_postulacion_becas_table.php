@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('postulacion_becas', function (Blueprint $table) {
-            $table->json('datos_socieconomicos')->nullable()->after('estatus');
+            $table->json('datos_socioeconomicos')->nullable()->after('estatus');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('postulacion_becas', function (Blueprint $table) {
-            $table->dropColumn('datos_socieconomicos');
+            $table->dropColumn('datos_socioeconomicos');
         });
     }
 };

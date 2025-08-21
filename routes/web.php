@@ -63,6 +63,12 @@ Route::resource('bitacora-postulaciones', BitacoraPostulacionesController::class
 Route::resource('requisito-verificados', RequisitoVerificadoController::class);
 Route::resource('dato-socioeconomicos', DatoSocioeconomicoController::class);
 
+
+// Mostrar formulario de postulación con datos socioeconómicos
+Route::get('/postularse/{id}/formulario', [\App\Http\Controllers\PostulacionBecaController::class, 'formulario'])
+    ->name('formulario.beca')
+    ->middleware('auth');
+    
 // Rutas para postularse a una beca
 Route::post('/postularse/{id}', [\App\Http\Controllers\PostulacionBecaController::class, 'postularse'])
     ->name('postularse.beca')

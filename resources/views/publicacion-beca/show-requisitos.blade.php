@@ -45,13 +45,10 @@
 
 	{{-- Botón de postulación --}}
 	<div class="bg-white shadow-lg rounded-xl p-6 border border-gray-100">
-		<form action="{{ route('postularse.beca', $publicacionBeca->id) }}" method="POST">
-			@csrf
-			<button 
-				type="submit" 
-				class="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all duration-200 ease-in-out">
-				Postularse a la Beca
-			</button>
-		</form>
+	    <a href="{{ route('formulario.beca', $publicacionBeca->id) }}"
+	       class="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:ring-2 focus:ring-green-400 focus:outline-none transition-all duration-200 ease-in-out">
+	        Postularse a la Beca
+	    </a>
 	</div>
+
 </x-app-layout>

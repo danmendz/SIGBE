@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostulacionBecaRequest;
 use App\Models\BitacoraPostulacion;
+use App\Models\PublicacionBeca;
 use App\Traits\ManejaPostulaciones;
 use App\Traits\VerificarRolUsuario;
 use Carbon\Carbon;
@@ -62,10 +63,17 @@ class PostulacionBecaController extends Controller
         return Redirect::back()->with('success', 'Postulación rechazada correctamente.');
     }
 
+    public function formulario($id)
+    {
+        $publicacionBeca = PublicacionBeca::findOrFail($id);
+
+        return view('postulacion-beca.form-datos-socieconomicos', compact('publicacionBeca'));
+    }
+
     /**
      * Postula a un estudiante a una beca
      */
-    public function postularse($id)
+    public function postularse(Request $request, $id)
     {
         $estudianteId = Auth::id();
 
@@ -73,14 +81,30 @@ class PostulacionBecaController extends Controller
             return Redirect::back()->with('error', 'Ya estás postulado a esta beca.');
         }
 
+        // Validar datos socioeconómicos
+        $validated = $request->validate([
+            'matricula' => 'required',
+            'ingreso_mensual' => 'required|numeric',
+            'tipo_vivienda' => 'required|string|max:255',
+            'dependiente' => 'required|string|max:255',
+            'ocupacion_dependiente' => 'nullable|string|max:255',
+            'dependientes_economicos' => 'nullable|numeric',
+            'estado_civil' => 'required|string|max:255',
+        ]);
+
+        // Convertir a JSON
+        $datosSocioeconomicos = json_encode($validated);
+
+        // Guardar postulación
         PostulacionBeca::create([
             'beca_publicada_id' => $id,
             'estudiante_id' => $estudianteId,
             'fecha_postulacion' => Carbon::now(),
             'estatus' => 'pendiente',
+            'datos_socioeconomicos' => $datosSocioeconomicos, // Guardamos el JSON
         ]);
 
-        return Redirect::back()->with('success', 'Te has postulado correctamente.');
+        return redirect()->route('dashboard')->with('success', 'Te has postulado correctamente.');
     }
 
     /**

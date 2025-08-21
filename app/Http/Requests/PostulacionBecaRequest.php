@@ -26,6 +26,7 @@ class PostulacionBecaRequest extends FormRequest
             'estudiante_id' => 'required|exists:users,id',
             'fecha_postulacion' => 'required|date',
             'estatus' => 'required|in:pendiente,aprobada,rechazada',
+            'datos_socioeconomicos' => 'required',
             'motivo_rechazo' => 'nullable|string|max:255',
         ];
     }
