@@ -62,7 +62,7 @@
                     <div class="ml-1">
                         <svg
                             class="w-4 h-4 fill-current"
-                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns="https://sl.bing.net/bnNKiftLUhU"
                             viewBox="0 0 20 20"
                         >
                             <path

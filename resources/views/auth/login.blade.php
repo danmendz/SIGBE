@@ -8,7 +8,9 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+   
 
+</div>
             <div class="grid gap-6">
                 <!-- Email Address -->
                 <div class="space-y-2">
@@ -72,13 +74,13 @@
                         >
 
                         <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __('Remember me') }}
+                            {{ __('Recordar contraseña') }}
                         </span>
                     </label>
 
                     @if (Route::has('password.request'))
                         <a class="text-sm text-blue-500 hover:underline" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
+                            {{ __('¿Perdiste tu contraseña?') }}
                         </a>
                     @endif
                 </div>
@@ -87,15 +89,15 @@
                     <x-button class="justify-center w-full gap-2">
                         <x-heroicon-o-arrow-right-end-on-rectangle class="w-6 h-6" aria-hidden="true" />
 
-                        <span>{{ __('Log in') }}</span>
+                        <span>{{ __('Inciar sesión') }}</span>
                     </x-button>
                 </div>
 
                 @if (Route::has('register'))    
                     <p class="text-sm text-gray-600 dark:text-gray-400">
-                        {{ __('Don’t have an account?') }}
+                        {{ __('¿No tienes una cuenta?') }}
                         <a href="{{ route('register') }}" class="text-blue-500 hover:underline">
-                            {{ __('Register') }}
+                            {{ __('Registrar') }}
                         </a>
                     </p>
                 @endif

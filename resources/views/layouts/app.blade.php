@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'K UI') }}</title>
+    <title>{{ config('app.name', 'SIGBE') }}</title>
 
     <!-- Fonts -->
     <link
@@ -45,8 +45,9 @@
             >
 
                 <!-- Navbar -->
+                 
                 <x-navbar />
-
+                <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #006400;">
                 <!-- Page Heading -->
                 <header>
                     <div class="p-4 sm:p-6">

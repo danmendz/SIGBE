@@ -3,7 +3,7 @@
     viewBox="0 0 24 24"
     stroke="currentColor"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
+    xmlns="https://sl.bing.net/bnNKiftLUhU"
 >
     <path
         d="M12 6H20M12 12H20M4 18H20M4 6L8 9L4 12"
