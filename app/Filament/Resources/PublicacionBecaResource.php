@@ -22,7 +22,8 @@ class PublicacionBecaResource extends Resource
 {
     protected static ?string $model = PublicacionBeca::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    public static ?string $label = 'Publicación de becas';
 
     public static function form(Form $form): Form
     {

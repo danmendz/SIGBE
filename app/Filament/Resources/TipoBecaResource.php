@@ -23,7 +23,8 @@ class TipoBecaResource extends Resource
 {
     protected static ?string $model = TipoBeca::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document';
+    public static ?string $label = 'Tipo de becas';
 
     public static function form(Form $form): Form
     {

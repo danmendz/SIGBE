@@ -22,8 +22,9 @@ class BecaActivaResource extends Resource
 {
     protected static ?string $model = BecaActiva::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    protected static ?string $navigationIcon = 'heroicon-o-check-circle';
+    public static ?string $label = 'Becas activas';
+    
     public static function form(Form $form): Form
     {
         return $form

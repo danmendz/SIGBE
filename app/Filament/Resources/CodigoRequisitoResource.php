@@ -22,6 +22,7 @@ class CodigoRequisitoResource extends Resource
     protected static ?string $model = CodigoRequisito::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    public static ?string $label = 'Códigos de requisitos';
 
     public static function form(Form $form): Form
     {

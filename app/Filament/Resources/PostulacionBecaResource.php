@@ -24,7 +24,8 @@ class PostulacionBecaResource extends Resource
 {
     protected static ?string $model = PostulacionBeca::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    public static ?string $label = 'Postulación de becas';
 
     public static function form(Form $form): Form
     {
