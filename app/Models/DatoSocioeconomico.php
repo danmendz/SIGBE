@@ -2,16 +2,36 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class DatoSocioeconomico
+ *
+ * @property $id
+ * @property $matricula
+ * @property $ingreso_mensual
+ * @property $tipo_vivienda
+ * @property $dependiente
+ * @property $ocupacion_dependiente
+ * @property $dependientes_economicos
+ * @property $estado_civil
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property User $user
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class DatoSocioeconomico extends Model
 {
-    use HasFactory;
+    protected $table = 'dato_socioeconomicos';   
+    protected $perPage = 20;
 
-    protected $table = 'dato_socioeconomicos';
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'matricula',
         'ingreso_mensual',
@@ -22,6 +42,9 @@ class DatoSocioeconomico extends Model
         'estado_civil',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function usuario(): BelongsTo
     {
         return $this->belongsTo(User::class, 'matricula', 'matricula');

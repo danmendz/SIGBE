@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionBecaController;
 use App\Http\Controllers\RequisitoVerificadoController;
+use App\Http\Controllers\DatoSocioeconomicoController;
 use App\Livewire\VerificarRequisitos;
 
 /*
@@ -59,7 +60,8 @@ Route::resource('postulacion-becas', PostulacionBecaController::class);
 Route::resource('beca-activas', BecaActivaController::class);
 Route::resource('publicacion-becas', PublicacionBecaController::class);
 Route::resource('bitacora-postulaciones', BitacoraPostulacionesController::class);
-Route::resource('requisito-verificados', RequisitoVerificadoController::class); 
+Route::resource('requisito-verificados', RequisitoVerificadoController::class);
+Route::resource('dato-socioeconomicos', DatoSocioeconomicoController::class);
 
 // Rutas para postularse a una beca
 Route::post('/postularse/{id}', [\App\Http\Controllers\PostulacionBecaController::class, 'postularse'])
@@ -82,5 +84,8 @@ Route::get('/consultar/requisitos/beca/{id}', [PublicacionBecaController::class,
 
 // Ruta para obtener la información sobre postulaciones, alumno, tipo de beca y sus requisitos
 Route::get('/obtener/postulaciones-becas', [ApiPostulacionBecaController::class, 'index']);
+
+// Consultar información sobre los datos socieconomicos de acuerdo a la matriucla del estudiante autenticado
+Route::get('/consultar-datos-socieconomicos/matricula/{matricula}', [DatoSocioeconomicoController::class, 'consultarPorMatriculaUrl'])->name('consultar.datos.socieconomicos');
 
 require __DIR__ . '/auth.php';

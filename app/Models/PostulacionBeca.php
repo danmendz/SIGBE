@@ -16,7 +16,13 @@ class PostulacionBeca extends Model
         'estudiante_id',
         'fecha_postulacion',
         'estatus',
+        'datos_socieconomicos'
         'motivo_rechazo',
+    ];
+
+    protected $casts = [
+        'datos_socieconomicos' => 'array',
+        'fecha_postulacion' => 'date',
     ];
 
     public function publicacionBeca()
