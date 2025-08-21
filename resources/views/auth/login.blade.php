@@ -13,8 +13,8 @@
                 <!-- Email Address -->
                 <div class="space-y-2">
                     <x-form.label
-                        for="email"
-                        :value="__('Email')"
+                        for="matricula"
+                        :value="__('Matricula')"
                     />
 
                     <x-form.input-with-icon-wrapper>
