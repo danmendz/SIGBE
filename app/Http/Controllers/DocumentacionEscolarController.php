@@ -68,6 +68,13 @@ class DocumentacionEscolarController extends Controller
     {
         $matricula = $request->input('matricula');
         $publicacion_beca = $request->input('publicacion_beca');
+        $postulacion_beca = $request->input('postulacion_beca');
+
+        if (!$postulacion_beca) {
+            return back()->with('error', 'La postulación de beca no existe.');
+        }
+
+        $postulacionBeca = $this->publicacionBecaService->obtenerInfoPostulacionPorId((int) $request->input('postulacion_beca'));
 
         $datosGenerales = $this->apiDocumentacionService->obtenerDatosGenerales($matricula);
         $documentacion = $this->apiDocumentacionService->obtenerDocumentacion($matricula);
@@ -76,7 +83,7 @@ class DocumentacionEscolarController extends Controller
         $calificaciones = $this->apiDocumentacionService->obtenerCalificaciones($matricula);
         $promedios = $this->apiDocumentacionService->obtenerPromedios($matricula);
 
-        $publicacionBeca = $this->publicacionBecaService->obtenerInfoPorId($publicacion_beca);
+        $publicacionBeca = $this->publicacionBecaService->obtenerInfoPublicacionPorId($publicacion_beca);
 
         if (!$publicacionBeca) {
             return back()->withErrors('La publicación de beca no existe.');
@@ -87,8 +94,8 @@ class DocumentacionEscolarController extends Controller
         }
 
         return view('postulacion-beca.show', array_merge(
-            compact('datosGenerales', 'documentacion', 'adeudos', 'info', 'calificaciones', 'promedios'),
-            $publicacionBeca
+            compact('datosGenerales', 'documentacion', 'adeudos', 'info', 'calificaciones', 'promedios', 'postulacion_beca'),
+            $publicacionBeca ?? [], $postulacionBeca ?? []
         ));
     }
 

@@ -66,6 +66,7 @@
                                                     @csrf
                                                     <input type="hidden" name="matricula" value="{{ $postulacionBeca->usuario->matricula }}">
                                                     <input type="hidden" name="publicacion_beca" value="{{ $postulacionBeca->beca_publicada_id }}">
+                                                    <input type="hidden" name="postulacion_beca" value="{{ $postulacionBeca->id }}">
                                                     <button type="submit" class="px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Inspeccionar</button>
                                                 </form>
 

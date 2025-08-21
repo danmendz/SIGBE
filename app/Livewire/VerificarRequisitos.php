@@ -40,13 +40,12 @@ class VerificarRequisitos extends Component
     ];
 
     // Permitir pasar postulacionId cuando se monta el componente
-    public function mount($postulacionId = null)
+    public function mount($postulacionId)
     {
         if ($postulacionId) {
             $this->postulacionId = $postulacionId;
         } elseif (!$this->postulacionId) {
-            // valor por defecto para pruebas (cámbialo o elimina en producción)
-            $this->postulacionId = 1;
+            $this->addError('postulacion', 'Postulación no encontrada');
         }
 
         $this->cargarDatosPostulacion();
@@ -66,7 +65,7 @@ class VerificarRequisitos extends Component
         $this->procesado = in_array($postulacion->estatus, ['aprobada', 'rechazada']);
 
         $service = app(PublicacionBecaService::class);
-        $info = $service->obtenerInfoPorId($this->publicacionBecaId);
+        $info = $service->obtenerInfoPublicacionPorId($this->publicacionBecaId);
 
         if (!$info) {
             $this->addError('publicacion', 'No se encontró la publicación de beca');

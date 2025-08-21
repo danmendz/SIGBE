@@ -41,9 +41,33 @@
         <x-card>
             <h3 class="text-xl font-semibold text-green-600 mb-4">Formulario para Registrar Cumplimiento</h3>
             <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                @livewire('verificar-requisitos', [], key('verificar-requisitos-' . ($publicacionBeca->id ?? 'default')))
+                @livewire('verificar-requisitos', ['postulacionId' => $postulacion_beca])
             </div>
         </x-card>
+
+        {{-- Apartado: Datos socioeconómicos del Estudiante --}}
+        <div class="col-span-2">
+            <x-card class="mb-6">
+                <h3 class="text-xl font-semibold text-green-600 mb-4">Datos Socioeconómicos del Estudiante</h3>
+
+                @if(!empty($datos_socioeconomicos))
+                    @php
+                        $datos = is_string($datos_socioeconomicos) ? json_decode($datos_socioeconomicos, true) : $datos_socioeconomicos;
+                    @endphp
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        @foreach($datos as $key => $value)
+                            <div class="bg-gray-50 p-3 rounded shadow-sm">
+                                <span class="text-gray-600 font-medium">{{ ucfirst(str_replace('_', ' ', $key)) }}:</span>
+                                <p class="text-gray-800 mt-1">{{ $value ?? 'N/A' }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p class="text-gray-500">No hay datos socioeconómicos disponibles.</p>
+                @endif
+            </x-card>
+        </div>
 
         {{-- Apartado: Información del Estudiante --}}
         <div class="col-span-2">
