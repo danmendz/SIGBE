@@ -1,69 +1,61 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-2xl text-green-600 leading-tight">
             {{ __('Bitacora Postulaciones') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 bg-gray-50">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="w-full">
-                    <div class="sm:flex sm:items-center">
-                        <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Bitacora Postulaciones') }}</h1>
-                            <p class="mt-2 text-sm text-gray-700">A list of all the {{ __('Bitacora Postulaciones') }}.</p>
-                        </div>
-                        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                            <a type="button" href="{{ route('bitacora-postulaciones.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add new</a>
-                        </div>
+            <div class="p-6 bg-white shadow-md rounded-lg">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <div class="sm:flex-auto">
+                        <h1 class="text-xl font-bold text-gray-900">{{ __('Bitacora Postulaciones') }}</h1>
+                        <p class="mt-2 text-gray-600 text-sm">Aquí se muestra el registro de todas las {{ __('Bitacora Postulaciones') }}.</p>
                     </div>
+                    <div class="mt-4 sm:mt-0 sm:ml-4">
+                        <a href="{{ route('bitacora-postulaciones.create') }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-white hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 shadow-sm transition-colors">
+                            Agregar nueva
+                        </a>
+                    </div>
+                </div>
 
-                    <div class="flow-root">
-                        <div class="mt-8 overflow-x-auto">
-                            <div class="inline-block min-w-full py-2 align-middle">
-                                <table class="w-full divide-y divide-gray-300">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">No</th>
-                                        
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Postulacion Id</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Usuario Reviso</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Actualizado El</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Accion</th>
+                <div class="mt-8 overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow-sm">
+                        <thead class="bg-green-600 text-white">
+                            <tr>
+                                <th class="py-3 px-4 text-left text-xs font-medium uppercase tracking-wider">No</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium uppercase tracking-wider">Postulacion Id</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium uppercase tracking-wider">Usuario Reviso</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium uppercase tracking-wider">Actualizado El</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium uppercase tracking-wider">Accion</th>
+                                <th class="py-3 px-4 text-left text-xs font-medium uppercase tracking-wider"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($bitacoraPostulaciones as $bitacoraPostulacione)
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="py-4 px-4 font-medium text-gray-900">{{ ++$i }}</td>
+                                    <td class="py-4 px-4 text-gray-700">{{ $bitacoraPostulacione->postulacion_id }}</td>
+                                    <td class="py-4 px-4 text-gray-700">{{ $bitacoraPostulacione->usuario_reviso }}</td>
+                                    <td class="py-4 px-4 text-gray-700">{{ $bitacoraPostulacione->actualizado_el }}</td>
+                                    <td class="py-4 px-4 text-gray-700">{{ $bitacoraPostulacione->accion }}</td>
+                                    <td class="py-4 px-4 flex space-x-2">
+                                        <a href="{{ route('bitacora-postulaciones.show', $bitacoraPostulacione->id) }}" class="text-green-600 font-semibold hover:text-green-800 transition-colors">Ver</a>
+                                        <a href="{{ route('bitacora-postulaciones.edit', $bitacoraPostulacione->id) }}" class="text-green-600 font-semibold hover:text-green-800 transition-colors">Editar</a>
+                                        <form action="{{ route('bitacora-postulaciones.destroy', $bitacoraPostulacione->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('¿Estás seguro de eliminar este registro?');" class="text-red-600 font-semibold hover:text-red-800 transition-colors">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                                        <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 bg-white">
-                                    @foreach ($bitacoraPostulaciones as $bitacoraPostulacione)
-                                        <tr class="even:bg-gray-50">
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
-                                            
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $bitacoraPostulacione->postulacion_id }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $bitacoraPostulacione->usuario_reviso }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $bitacoraPostulacione->actualizado_el }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $bitacoraPostulacione->accion }}</td>
-
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                <form action="{{ route('bitacora-postulaciones.destroy', $bitacoraPostulacione->id) }}" method="POST">
-                                                    <a href="{{ route('bitacora-postulaciones.show', $bitacoraPostulacione->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
-                                                    <a href="{{ route('bitacora-postulaciones.edit', $bitacoraPostulacione->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('bitacora-postulaciones.destroy', $bitacoraPostulacione->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-
-                                <div class="mt-4 px-4">
-                                    {!! $bitacoraPostulaciones->withQueryString()->links() !!}
-                                </div>
-                            </div>
-                        </div>
+                    <div class="mt-6">
+                        {!! $bitacoraPostulaciones->withQueryString()->links() !!}
                     </div>
                 </div>
             </div>

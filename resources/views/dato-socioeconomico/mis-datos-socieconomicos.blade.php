@@ -1,78 +1,70 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dato Socioeconomicos') }}
+        <h2 class="font-bold text-2xl text-gray-800 leading-tight">
+            {{ __('Datos Socioeconómicos') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-6 bg-white shadow-lg sm:rounded-lg">
                 <div class="w-full">
-                    <div class="sm:flex sm:items-center">
+                    <div class="sm:flex sm:items-center justify-between">
                         <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Dato Socioeconomicos') }}</h1>
-                            <p class="mt-2 text-sm text-gray-700">A list of all the {{ __('Dato Socioeconomicos') }}.</p>
+                            <h1 class="text-xl font-semibold text-gray-900">{{ __('Datos Socioeconómicos') }}</h1>
+                            <p class="mt-1 text-sm text-gray-600">Listado completo de los datos socioeconómicos registrados.</p>
                         </div>
+
                         @if(!$yaTieneRegistro)
-                            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                <a type="button" 
-                                   href="{{ route('dato-socioeconomicos.create') }}" 
-                                   class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                    Add new
+                            <div class="mt-4 sm:mt-0 sm:flex-none">
+                                <a href="{{ route('dato-socioeconomicos.create') }}" 
+                                   class="inline-block px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 transition">
+                                    Agregar nuevo
                                 </a>
                             </div>
                         @endif
                     </div>
 
-                    <div class="flow-root">
-                        <div class="mt-8 overflow-x-auto">
-                            <div class="inline-block min-w-full py-2 align-middle">
-                                <table class="w-full divide-y divide-gray-300">
-                                    <thead>
-                                    <tr>
-
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Matricula</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Ingreso Mensual</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Tipo Vivienda</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Dependiente</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Ocupacion Dependiente</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Dependientes Economicos</th>
-									<th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Estado Civil</th>
-
-                                        <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 bg-white">
-                                    @foreach ($datoSocioeconomicos as $datoSocioeconomico)
-                                        <tr class="even:bg-gray-50">
-                                            
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->matricula }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->ingreso_mensual }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->tipo_vivienda }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->dependiente }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->ocupacion_dependiente }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->dependientes_economicos }}</td>
-										<td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $datoSocioeconomico->estado_civil }}</td>
-
-                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
-                                                <form action="{{ route('dato-socioeconomicos.destroy', $datoSocioeconomico->id) }}" method="POST">
-                                                    <a href="{{ route('dato-socioeconomicos.show', $datoSocioeconomico->id) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
-                                                    <a href="{{ route('dato-socioeconomicos.edit', $datoSocioeconomico->id) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('dato-socioeconomicos.destroy', $datoSocioeconomico->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
-                                                </form>
-                                            </td>
-                                        </tr>
+                    <div class="mt-8 overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 shadow-sm rounded-lg overflow-hidden">
+                            <thead class="bg-green-600">
+                                <tr>
+                                    @foreach(['Matricula','Ingreso Mensual','Tipo Vivienda','Dependiente','Ocupacion Dependiente','Dependientes Economicos','Estado Civil'] as $header)
+                                        <th scope="col" class="px-3 py-3 text-left text-xs font-semibold text-white uppercase tracking-wide">
+                                            {{ $header }}
+                                        </th>
                                     @endforeach
-                                    </tbody>
-                                </table>
+                                    <th scope="col" class="px-3 py-3 text-left text-xs font-semibold text-white uppercase tracking-wide">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($datoSocioeconomicos as $dato)
+                                    <tr class="even:bg-gray-50 hover:bg-green-50 transition">
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->matricula }}</td>
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->ingreso_mensual }}</td>
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->tipo_vivienda }}</td>
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->dependiente }}</td>
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->ocupacion_dependiente }}</td>
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->dependientes_economicos }}</td>
+                                        <td class="px-3 py-4 text-sm text-gray-700">{{ $dato->estado_civil }}</td>
+                                        <td class="px-3 py-4 text-sm font-medium flex gap-2">
+                                            <a href="{{ route('dato-socioeconomicos.show', $dato->id) }}" class="px-2 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">Ver</a>
+                                            <a href="{{ route('dato-socioeconomicos.edit', $dato->id) }}" class="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-500 transition">Editar</a>
+                                            <form action="{{ route('dato-socioeconomicos.destroy', $dato->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('¿Estás seguro de eliminar?');" class="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-500 transition">
+                                                    Eliminar
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
-                                <div class="mt-4 px-4">
-                                    {!! $datoSocioeconomicos->withQueryString()->links() !!}
-                                </div>
-                            </div>
+                        <div class="mt-4">
+                            {!! $datoSocioeconomicos->withQueryString()->links('pagination::tailwind') !!}
                         </div>
                     </div>
                 </div>
